@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zig Morph bookmark: set up</title>
+<meta name="theme-color" content="#07040f">
+<link rel="apple-touch-icon" href="../icons/icon-180.png">
+<link rel="icon" href="../icons/favicon-32.png">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #07040f; color: #f4efff; font: 21px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: calc(18px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) calc(40px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left)); }
+  main { max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 32px; line-height: 1.15; margin: 6px 0 6px; }
+  h2 { font-size: 26px; margin: 34px 0 10px; }
+  p { margin: 8px 0; }
+  .sub { color: #c9bcf0; margin-bottom: 18px; }
+  ol { padding-left: 0; list-style: none; counter-reset: s; margin: 0; }
+  ol > li { counter-increment: s; position: relative; padding: 16px 16px 16px 66px; margin: 12px 0; background: #160d2b; border-radius: 20px; }
+  ol > li::before { content: counter(s); position: absolute; left: 14px; top: 14px; width: 40px; height: 40px; border-radius: 20px;
+    background: linear-gradient(135deg, #a259ff, #3db4ff); color: #fff; font-weight: 800; text-align: center; line-height: 40px; }
+  b { color: #fff; }
+  .btn { display: block; width: 100%; min-height: 64px; margin: 12px 0 4px; border: 0; border-radius: 18px; font: 700 23px/1.2 inherit; font-family: inherit;
+    color: #fff; background: linear-gradient(135deg, #a259ff, #3db4ff); cursor: pointer; }
+  .btn.alt { background: #2a1d4a; font-size: 20px; min-height: 56px; }
+  .ok { color: #7dffb2; font-weight: 700; min-height: 1.4em; margin: 4px 0 0; }
+  textarea { width: 100%; height: 110px; margin-top: 8px; border-radius: 12px; border: 1px solid #3a2a63; background: #0f0920; color: #cfc2ff; font: 13px/1.3 ui-monospace, Menlo, monospace; padding: 10px; }
+  video { width: 100%; border-radius: 16px; background: #000; display: block; margin-top: 10px; }
+  details { margin-top: 30px; background: #120a24; border-radius: 18px; padding: 12px 16px; }
+  summary { font-weight: 700; cursor: pointer; }
+  .small { font-size: 17px; color: #c9bcf0; }
+  a { color: #8fd3ff; }
+  .warn { font-size: 17px; color: #ffd38f; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Zig Morph on any website</h1>
+  <p class="sub">Set this up once. Then you can morph videos on other websites.</p>
+
+  <h2>Set up (one time)</h2>
+  <ol>
+    <li><b>Copy the code.</b>
+      <button class="btn" id="copyMain" type="button">Copy the code</button>
+      <p class="ok" id="okMain" aria-live="polite"></p>
+    </li>
+    <li><b>Save this page as a bookmark.</b><br>Tap the <b>Share</b> button (square with an arrow&nbsp;⬆, sometimes inside the <b>•••</b> button). Tap <b>Add Bookmark</b>. Name it <b>Zig&nbsp;Morph</b>. Tap <b>Save</b>.</li>
+    <li><b>Put the code in the bookmark.</b><br>Open <b>Bookmarks</b> (the open book&nbsp;📖). Tap <b>Edit</b>. Tap <b>Zig&nbsp;Morph</b>. Tap the web address under the name, clear it with&nbsp;ⓧ, then tap it again and choose <b>Paste</b>. Tap <b>Done</b>.</li>
+  </ol>
+
+  <h2>Use it</h2>
+  <ol>
+    <li>Open a website with a video and <b>start the video</b>.</li>
+    <li>Tap the <b>address bar</b> and type <b>Zig&nbsp;Morph</b>.</li>
+    <li>Tap the <b>Zig&nbsp;Morph</b> bookmark in the list.</li>
+  </ol>
+  <p>A small round button appears on the right. Tap it to choose an effect. <b>To switch off</b>, tap <b>Off&nbsp;✕</b>, or tap the bookmark again.</p>
+
+  <h2>Try it here</h2>
+  <p class="small">Play this video, then use your Zig&nbsp;Morph bookmark on this page.</p>
+  <video id="demo" src="../demo.mp4" playsinline webkit-playsinline muted loop controls preload="metadata"></video>
+
+  <p class="warn">⚠️ Nothing flashes faster than once a second, but the effects swirl. Brain&nbsp;Morph is the strongest. Stop if you feel dizzy.</p>
+
+  <details>
+    <summary>A site says "blocked"?</summary>
+    <p class="small">Some websites block add-ons. Make a second bookmark the same way, named <b>Zig Morph Max</b>, using this code instead. It carries the whole effect inside the bookmark.</p>
+    <button class="btn alt" id="copyMax" type="button">Copy the Max code</button>
+    <p class="ok" id="okMax" aria-live="polite"></p>
+    <p class="small">Some big sites (for example YouTube, Netflix, Instagram) block every bookmark in Safari. Nothing can run there. Protected videos (Netflix, Disney+ and similar) only get a light colour effect, but Brain&nbsp;Morph still works.</p>
+  </details>
+
+  <details>
+    <summary>Show the code (to copy by hand)</summary>
+    <p class="small">Main code:</p>
+    <textarea id="codeMain" readonly></textarea>
+    <p class="small">Max code (long):</p>
+    <textarea id="codeMax" readonly></textarea>
+  </details>
+
+  <p class="small" style="margin-top:28px"><a href="../">← Back to the Zig Morph player</a></p>
+</main>
+<script src="codes.js"></script>
+<script>
+(function () {
+  var C = window.ZIG_CODES || {};
+  var tm = document.getElementById('codeMain'), tx = document.getElementById('codeMax');
+  tm.value = C.loader || ''; tx.value = C.max || '';
+  function copy(text, area, okEl) {
+    function done(ok) {
+      okEl.textContent = ok ? '✓ Copied! Now do step 2.' : 'Couldn\u2019t copy. Open \u201cShow the code\u201d below, press and hold the code, choose Select All, then Copy.';
+    }
+    function legacy() {
+      var d = area.closest('details'); var wasOpen = d && d.open; if (d) d.open = true;
+      area.focus(); area.select(); area.setSelectionRange(0, text.length);
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      area.blur(); if (d && !wasOpen) d.open = false; done(ok);
+    }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(function () { done(true); }, legacy);
+    else legacy();
+  }
+  document.getElementById('copyMain').addEventListener('click', function () { copy(C.loader, tm, document.getElementById('okMain')); });
+  document.getElementById('copyMax').addEventListener('click', function () { copy(C.max, tx, document.getElementById('okMax')); });
+})();
+</script>
+</body>
+</html>

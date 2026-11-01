@@ -89,3 +89,15 @@ index.html, app.css, app.js : the app itself
 sw.js                       : makes it work offline
 manifest.webmanifest, icons/: the Home Screen app name and icon
 demo.mp4                    : the demo clip
+
+Zig Morph bookmark (Safari bookmarklet), added Nov 2026
+-------------------------------------------------------
+Setup page: https://zigflames.com/zig-metamorphosis-mobile/bookmarklet/
+Files in bookmarklet/:
+  index.html    setup page (big text, copy buttons, test video)
+  morph.js      the effect that runs on other websites (the bookmark loads this)
+  morph.min.js  minified copy (the source of the "Max" all-in-one bookmark)
+  codes.js      the two bookmark codes shown on the setup page (generated)
+The bookmark loads morph.js from zigflames.com, and from cdn.jsdelivr.net if the site blocks
+zigflames.com. Tap the bookmark again (or Off) to stop.
+Rebuild codes after editing morph.js: node /workspace/zig-bookmarklet-build/build.mjs

@@ -1,6 +1,6 @@
 /* Offline support for Zig Metamorphosis. Caches only this app's own files.
    Never touches your videos: picked files are local blob: URLs and pasted links go straight to their server. */
-const CACHE = 'zig-mobile-v2';
+const CACHE = 'zig-mobile-v3';
 const SHELL = ['./', 'index.html', 'app.css', 'app.js', 'manifest.webmanifest', 'demo.mp4',
   'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png', 'icons/favicon-32.png'];
 
