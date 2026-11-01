@@ -482,7 +482,7 @@
     const root = host.attachShadow ? host.attachShadow({ mode: 'closed' }) : host;
     const mk = (tag, css, text, parent) => { const e = document.createElement(tag); e.style.cssText = css; if (text) e.textContent = text; (parent || root).appendChild(e); return e; };
     const BTN = 'all:initial;box-sizing:border-box;font:inherit;color:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;';
-    const dot = mk('button', BTN + 'display:block;width:44px;height:44px;border-radius:22px;background:radial-gradient(circle at 50% 50%,#ff3b5c 0 4px,#7b3cff 5px,#2fb8ff 70%);' +
+    const dot = mk('button', BTN + 'display:block;margin:0 0 0 auto;width:44px;height:44px;border-radius:22px;background:radial-gradient(circle at 50% 50%,#ff3b5c 0 4px,#7b3cff 5px,#2fb8ff 70%);' +
       'box-shadow:0 2px 12px rgba(0,0,0,.45);border:2px solid rgba(255,255,255,.85);opacity:.55;transition:opacity .3s;');
     dot.setAttribute('aria-label', 'Zig Morph menu');
     const panel = mk('div', 'display:none;box-sizing:border-box;width:236px;padding:10px;border-radius:20px;background:rgba(14,8,28,.88);' +
@@ -516,7 +516,7 @@
     function place() {
       const vv = W.visualViewport, s = vv ? vv.scale : 1, ox = vv ? vv.offsetLeft : 0, oy = vv ? vv.offsetTop : 0;
       const vw = vv ? vv.width : W.innerWidth, vh = vv ? vv.height : W.innerHeight;
-      const w = (open ? 236 : 44) / s;
+      const w = (open || toastEl.style.display === 'block' ? 236 : 44) / s;
       host.style.setProperty('transform', 'scale(' + (1 / s).toFixed(4) + ')', 'important');
       host.style.setProperty('left', (ox + vw - w - 10 / s).toFixed(1) + 'px', 'important');
       host.style.setProperty('top', (oy + vh * 0.3).toFixed(1) + 'px', 'important');
@@ -531,7 +531,7 @@
     }
     function toast(text, ms) {
       toastEl.textContent = text; toastEl.style.display = 'block'; place();
-      clearTimeout(toastTimer); toastTimer = setTimeout(() => { toastEl.style.display = 'none'; }, ms || 6000);
+      clearTimeout(toastTimer); toastTimer = setTimeout(() => { toastEl.style.display = 'none'; place(); }, ms || 6000);
     }
     const onVV = () => place();
     if (W.visualViewport) { W.visualViewport.addEventListener('resize', onVV); W.visualViewport.addEventListener('scroll', onVV); }
