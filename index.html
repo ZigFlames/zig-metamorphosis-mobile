@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zig Metamorphosis</title>
+<meta name="description" content="Living, morphing video effects. Your videos never leave your device.">
+<meta name="theme-color" content="#07040f">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Zig Morph">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- Start screen -->
+<main id="home">
+  <div class="home-inner">
+    <img class="logo" src="icons/icon-192.png" alt="" width="84" height="84">
+    <h1>Zig Metamorphosis</h1>
+    <p class="tag">Living, morphing video effects</p>
+
+    <label class="big-btn primary" for="file">
+      <span>Choose a video</span>
+      <small>From Photos, Files or the camera</small>
+    </label>
+    <input id="file" type="file" accept="video/*" hidden>
+
+    <form id="urlForm" class="url-row" autocomplete="off">
+      <input id="url" type="url" inputmode="url" placeholder="…or paste a direct video link (.mp4)" aria-label="Video link" spellcheck="false" autocapitalize="off">
+      <button type="submit" class="small-btn">Play</button>
+    </form>
+
+    <button id="demoBtn" class="big-btn ghost" type="button"><span>Try the demo clip</span></button>
+
+    <p id="homeMsg" class="msg" role="status" hidden></p>
+
+    <ul class="notes">
+      <li>🔒 Your video stays on this device. Nothing is uploaded.</li>
+      <li id="installTip" hidden>📲 For true full screen and offline use: tap <b>Share</b> → <b>Add to Home Screen</b>.</li>
+      <li>⚠️ No flashing or strobing (every change is slower than once a second), but swirls and illusions can still feel intense. Stop if you feel dizzy or unwell.</li>
+    </ul>
+  </div>
+</main>
+
+<!-- Player -->
+<section id="stage" hidden>
+  <video id="video" playsinline webkit-playsinline loop preload="auto" disablepictureinpicture x-webkit-airplay="deny"></video>
+  <canvas id="canvas"></canvas>
+
+  <button id="bigPlay" class="big-play" type="button" aria-label="Play" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <span>Tap to play</span>
+  </button>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <div id="ui" class="ui">
+    <div class="topbar">
+      <button id="backBtn" class="icon-btn" type="button" aria-label="Choose another video">
+        <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="title" class="title"></div>
+      <button id="muteBtn" class="icon-btn" type="button" aria-label="Sound on/off"></button>
+      <button id="fsBtn" class="icon-btn" type="button" aria-label="Full screen" hidden>
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="panel">
+      <div class="transport">
+        <button id="playBtn" class="icon-btn" type="button" aria-label="Play/Pause"></button>
+        <span id="tCur" class="time">0:00</span>
+        <input id="seek" type="range" min="0" max="1000" value="0" aria-label="Position">
+        <span id="tDur" class="time">0:00</span>
+      </div>
+
+      <div id="modes" class="chips" role="radiogroup" aria-label="Effect">
+        <button type="button" data-mode="cycle">Metamorphosis Cycle</button>
+        <button type="button" data-mode="liquid">Liquid Melt</button>
+        <button type="button" data-mode="dissolve">Dissolve &amp; Reform</button>
+        <button type="button" data-mode="refraction">Refraction</button>
+        <button type="button" data-mode="chroma">Chroma Morph</button>
+        <button type="button" data-mode="brain">Brain Morph</button>
+      </div>
+
+      <p id="brainHint" class="hint" hidden>Keep your eyes on the red dot. When the swirl fades, the video will seem to move the other way.</p>
+      <p id="fallbackNote" class="hint warn" hidden></p>
+
+      <div class="sliders">
+        <label>Intensity <input id="intensity" type="range" min="0" max="100"></label>
+        <label>Speed <input id="speed" type="range" min="0" max="100"></label>
+        <label id="adaptRow" hidden>Stare time <span id="adaptVal"></span><input id="adapt" type="range" min="10" max="60"></label>
+      </div>
+
+      <div class="perf" role="radiogroup" aria-label="Performance">
+        <span>Quality</span>
+        <button type="button" data-perf="low">Battery saver</button>
+        <button type="button" data-perf="medium">Balanced</button>
+        <button type="button" data-perf="high">Sharp</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
